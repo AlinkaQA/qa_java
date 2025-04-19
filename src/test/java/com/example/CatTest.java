@@ -1,29 +1,31 @@
 package com.example;
 
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.when;
 
 public class CatTest {
 
+    private Feline feline;
+    private Cat cat;
+
+    @Before
+    public void setUp() {
+        feline = Mockito.mock(Feline.class);
+        cat = new Cat(feline);
+    }
+
     @Test
-    public void getSound_ReturnsMeow() {
-        Feline feline = Mockito.mock(Feline.class);
-        Cat cat = new Cat(feline);
+    public void getSoundTest() {
         assertEquals("Мяу", cat.getSound());
     }
 
     @Test
-    public void getFood_ReturnsPredatorFood() throws Exception {
-        Feline feline = Mockito.mock(Feline.class);
-        List<String> expectedFood = List.of("Мясо");
-        when(feline.eatMeat()).thenReturn(expectedFood);
-
-        Cat cat = new Cat(feline);
-        assertEquals(expectedFood, cat.getFood());
+    public void getFoodTestReturnsPredatorFood() throws Exception {
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        Mockito.when(feline.eatMeat()).thenReturn(expectedFood);
+        assertEquals("Метод getFood() должен возвращать еду хищника", expectedFood, cat.getFood());
     }
 }

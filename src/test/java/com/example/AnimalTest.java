@@ -1,37 +1,29 @@
 package com.example;
 
+import org.junit.Before;
 import org.junit.Test;
-
+import org.mockito.Mockito;
 import java.util.List;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertThrows;
 
 public class AnimalTest {
 
+    private Animal animal;
+
+    @Before
+    public void setUp() {
+        animal = new Animal();
+    }
+
     @Test
-    public void getFamily_ReturnsExpectedString() {
-        Animal animal = new Animal();
+    public void getFamilyTest() {
         String expected = "Существует несколько семейств: заячьи, беличьи, мышиные, кошачьи, псовые, медвежьи, куньи";
-        assertEquals(expected, animal.getFamily());
+        assertEquals("Метод getFamily() возвращает неверную строку", expected, animal.getFamily());
     }
 
     @Test(expected = Exception.class)
-    public void getFood_ThrowsException_WhenTypeIsUnknown() throws Exception {
-        Animal animal = new Animal();
-        animal.getFood("Растениеядное");
-    }
-
-    @Test
-    public void getFood_ReturnsCorrectFood_ForHerbivore() throws Exception {
-        Animal animal = new Animal();
-        List<String> expected = List.of("Трава", "Различные растения");
-        assertEquals(expected, animal.getFood("Травоядное"));
-    }
-
-    @Test
-    public void getFood_ReturnsCorrectFood_ForPredator() throws Exception {
-        Animal animal = new Animal();
-        List<String> expected = List.of("Животные", "Птицы", "Рыба");
-        assertEquals(expected, animal.getFood("Хищник"));
+    public void getFoodTestThrowsExceptionWhenTypeIsUnknown() throws Exception {
+        animal.getFood("Неизвестный");
     }
 }

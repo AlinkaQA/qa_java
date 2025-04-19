@@ -1,36 +1,38 @@
 package com.example;
 
+import org.junit.Before;
 import org.junit.Test;
-
 import java.util.List;
-
 import static org.junit.Assert.assertEquals;
 
 public class FelineTest {
 
+    private Feline feline;
+
+    @Before
+    public void setUp() {
+        feline = new Feline();
+    }
+
     @Test
-    public void getFamily_ReturnsFelineFamily() {
-        Feline feline = new Feline();
+    public void getFamilyTest() {
         assertEquals("Кошачьи", feline.getFamily());
     }
 
     @Test
-    public void getKittens_ReturnsDefaultOne() {
-        Feline feline = new Feline();
+    public void getKittensTestReturnsPassedCount() {
+        assertEquals(5, feline.getKittens(5));
+    }
+
+    @Test
+    public void getKittensTestReturnsDefault() {
         assertEquals(1, feline.getKittens());
     }
 
     @Test
-    public void getKittens_ReturnsPassedCount() {
-        Feline feline = new Feline();
-        assertEquals(4, feline.getKittens(4));
-    }
-
-    @Test
-    public void eatMeat_ReturnsCorrectFood() throws Exception {
-        Feline feline = new Feline();
-        List<String> expected = List.of("Животные", "Птицы", "Рыба");
-        assertEquals(expected, feline.eatMeat());
+    public void eatMeatTestReturnsExpectedFood() throws Exception {
+        List<String> expectedFood = List.of("Животные", "Птицы", "Рыба");
+        assertEquals(expectedFood, feline.eatMeat());
     }
 }
 
