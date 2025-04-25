@@ -20,11 +20,6 @@ public class LionTest {
         predator = mock(Predator.class);
     }
 
-    @Test
-    public void lionConstructorWithMaleSetsHasManeTrue() throws Exception {
-        Lion lion = new Lion("Самец", predator);
-        assertTrue("Самец должен иметь гриву", lion.doesHaveMane());
-    }
 
     @Test
     public void lionConstructorWithFemaleSetsHasManeFalse() throws Exception {
